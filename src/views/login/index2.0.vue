@@ -42,29 +42,8 @@
 		stripscript,
 		validateEmail
 	} from '@/utils/validate';
-	import {
-		reactive,
-		ref
-	} from '@vue/composition-api'
 	export default {
 		name: "login",
-		setup(props, context){
-			//这里放置data数据、生命周期、自定义函数等
-			const menuTab = reactive([{
-					txt: "登录",
-					current: true,
-					type: 'login'
-				},
-				{
-					txt: "注册",
-					current: false,
-					type: 'register'
-				}
-			])
-			
-			//模块
-			const model = ref('login')
-		},
 		data() {
 			//用户名
 			var validateUsername = (rule, value, callback) => {
@@ -117,8 +96,19 @@
 				}
 			};
 			return {
-				
-				
+				menuTab: [{
+						txt: "登录",
+						current: true,
+						type: 'login'
+					},
+					{
+						txt: "注册",
+						current: false,
+						type: 'register'
+					}
+				],
+				//模块
+				model: 'login',
 				//表单数据
 				ruleForm: {
 					username: "",
