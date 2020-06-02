@@ -2,35 +2,20 @@
 	<div id="login">
 		<div class="login-wrap">
 			<div class="login-left">
-				<!-- <ul class="menu-tab">
-				<li v-for="item in menuTab" :key="item.id" :class="{'current': item.current }" @click="toggleMneu(item)">{{ item.txt }}</li>
-			</ul> -->
-				<!-- 表单开始 -->
 				<el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" class="login-form" size="medium">
 					<el-form-item prop="username" class="item-form">
-						<label>邮箱</label>
+						<div class="login-pass">
+							<span class="active" @click.stop="isMobile = true">密码</span>
+							<span @click.stop="isMobile = false">验证码</span>
+						</div>
 						<el-input type="text" v-model="ruleForm.username" autocomplete="off"></el-input>
 					</el-form-item>
 					<el-form-item prop="password" class="item-form">
-						<label>密码</label>
-						<el-input type="password" v-model="ruleForm.password" autocomplete="off" minlength="6" maxlength="20"></el-input>
+						<!-- <label>密码</label> -->
+						<el-input type="password" v-model="ruleForm.password" autocomplete="off" minlength="6" maxlength="20" placeholder="请输入您的密码"></el-input>
+						<el-input type="password" v-model="ruleForm.password" autocomplete="off" minlength="6" maxlength="20" placeholder="请输入验证码"></el-input>
 					</el-form-item>
-					<!-- <el-form-item prop="passwords" class="item-form" v-show="model === 'register'">
-						<label>重复密码</label>
-						<el-input type="password" v-model="ruleForm.passwords" autocomplete="off" minlength="6" maxlength="20"></el-input>
-					</el-form-item> -->
-					<el-form-item prop="code" class="item-form">
-						<label>验证码</label>
 
-						<el-row :gutter="11">
-							<el-col :span="15">
-								<el-input v-model.number="ruleForm.code"></el-input>
-							</el-col>
-							<el-col :span="9">
-								<el-button type="success" class="block">获取验证码</el-button>
-							</el-col>
-						</el-row>
-					</el-form-item>
 					<el-form-item>
 						<el-button type="primary" @click="submitForm('ruleForm')" class="login-btn block login-form">登录</el-button>
 					</el-form-item>
@@ -43,39 +28,26 @@
 	</div>
 </template>
 <script>
-	import {
-		stripscript,
-		validateEmail
-	} from '@/utils/validate';
 	export default {
 		name: "login",
 		data() {
-			
+
 			return {
 				//表单数据
 				ruleForm: {
 					username: "",
-					password: "",
-					passwords: "",
-					code: ""
+					password: ""
+
 				},
 				rules: {
-					
+
 				}
 			};
 		},
 		created() {},
 		mounted() {},
 		methods: {
-			toggleMneu(data) {
-				this.menuTab.forEach(element => {
-					element.current = false;
-				});
-				//高光
-				data.current = true;
-				//修改模块
-				this.model = data.type;
-			},
+
 			submitForm(formName) {
 				this.$refs[formName].validate(valid => {
 					if (valid) {
@@ -106,7 +78,7 @@
 		-webkit-transform: translateX(-50%) translateY(-50%);
 	}
 
-	.login-wrap:hover {
+	.login-left:hover {
 		box-shadow: 5px 5px 5px -1px rgba(0, 0, 0, 0.3);
 	}
 
@@ -135,7 +107,7 @@
 	}
 
 	.login-left {
-		padding: 50px;
+		//padding: 50px;
 		display: inline-block;
 		width: 520px;
 		height: 540px;
@@ -149,6 +121,7 @@
 		width: 300px;
 		height: 540px;
 	}
+
 	img {
 		width: 300px;
 	}
