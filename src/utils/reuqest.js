@@ -1,7 +1,10 @@
 import axios from 'axios'
 
 //创建axios，给变量service
-const service = axios.create();
+const service = axios.create({
+	baseURL: "http://www.web-jshtml.cn/productApi",
+	timeout: 1000
+});
 
 // 添加请求拦截器
 service.interceptors.request.use(function(config) {

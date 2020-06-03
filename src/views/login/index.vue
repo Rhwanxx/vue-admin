@@ -157,6 +157,7 @@ export default {
 		 * 获取验证码
 		 */
 		const getSms = (() => {
+			console.log(111);
 			getSmsCode();
 		});
 		/**
@@ -177,7 +178,9 @@ export default {
 		 * 生命周期
 		 */
 		//挂载完成后
-		onMounted(() => {});
+		onMounted(() => {
+			//console.log(process.env.VUE_APP_AV);
+		});
 
 		return {
 			menuTab,
